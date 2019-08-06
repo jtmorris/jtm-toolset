@@ -3,18 +3,22 @@ import time
 def init_list_with_values(list_length: int, init_value):
 	"""Return a pre-initialized list.
 
-	Returns a list of length list_length with each element equal to init_value.
-	init_value must be immutable (e.g. an int is okay; a dictionary is not),
-	or the resulting list will be a list of references to same object (e.g.
-	retlist[0] and retlist[1] would point to the same object and manipulating
+	Returns a list of length list_length with each element equal to
+	init_value. init_value must be immutable (e.g. an int is okay; a
+	dictionary is not), or the resulting list will be a list of
+	references to same object (e.g. retlist[0] and retlist[1] would
+	point to the same object and manipulating
 	one would change it for the other).
 
 	Args:
-		list_length (int):	The number of elements in the resulting list.
-		init_value:		A immutable value to initialize each list element to.
+		list_length (int):	The number of elements in the resulting
+						list.
+		init_value:		A immutable value to initialize each list
+						element to.
 
 	Returns:
-		list: A list of length list_length with each element initialized to init_value
+		list:	A list of length list_length with each element
+				initialized to init_value
 
 	Examples:
 		>>> init_list_with_values(3, 0)
@@ -32,14 +36,17 @@ def init_list_with_values(list_length: int, init_value):
 def var_dump(the_var):
 	"""Rough equivalent to PHP's var_dump() function.
 
-	Outputs the content of the passed variable to the console. This is effectively an
-	alias for pprint() from the pprint module. Useful for dirty debugging to see what is in
-	a variable.
+	Outputs the content of the passed variable to the console. This is
+	effectively an alias for pprint() from the pprint module. Useful
+	for dirty debugging to see what is in a variable.
 
-	Note that you would be better served, performance wise, to put 'from pprint import pprint as var_dump'
-	in your code, rather than use this function as it imports pprint each time (a small performance hit,
-	with Python's caching, but a hit nonetheless). This function simply makes one off debug checks easier
-	if this module is already loaded, as another import statement isn't needed first.
+	Note that you would be better served, performance wise, to put
+	'from pprint import pprint as var_dump' in your code, rather than
+	use this function as it imports pprint each time (a small
+	performance hit, with Python's caching, but a hit nonetheless).
+	This function simply makes one off debug checks easier if this
+	module is already loaded, as another import statement isn't needed
+	first.
 
 	Args:
 		the_var:	A variable to "dump" to the console.
@@ -197,7 +204,8 @@ class Performance_Monitor:
 
 		self.quiet_stop()
 
-		print(prefix + calling_func + self.get_readable_time(units, 1) + postfix)
+		print(prefix + calling_func + self.get_readable_time(units, 1) +
+		      postfix)
 
 
 
@@ -264,9 +272,11 @@ class Performance_Monitor:
 			return cases[units]((self.stop_time - self.start_time))
 		# Default
 		else:
-			raise ValueError("Invalid units type requested (" + units + ").")
+			raise ValueError("Invalid units type requested (" +
+			                 units + ").")
 
-	def get_readable_time(self, units: str = "microseconds", precision: int = None):
+	def get_readable_time(self, units: str = "microseconds",
+		                 precision: int = None):
 		"""Gets the time between start and stop, with units included.
 
 		A wrapper around the get_time() member function that returns
@@ -296,17 +306,23 @@ class Performance_Monitor:
 			>>> P = Performance_Monitor()
 			>>> # Execute code you want to measure here.
 			>>> t_in_ns_fs	= P.stop()
-			>>> P.get_readable_time("minutes").split()[-1] == "minutes"
+			>>> (P.get_readable_time("minutes").split()[-1] ==
+			... "minutes")
 			True
-			>>> P.get_readable_time("seconds").split()[-1] == "seconds"
+			>>> (P.get_readable_time("seconds").split()[-1] ==
+			... "seconds")
 			True
-			>>> P.get_readable_time("milliseconds").split()[-1] == "milliseconds"
+			>>> (P.get_readable_time("milliseconds").split()[-1] ==
+			... "milliseconds")
 			True
-			>>> P.get_readable_time("microseconds").split()[-1] == "microseconds"
+			>>> (P.get_readable_time("microseconds").split()[-1] ==
+			... "microseconds")
 			True
-			>>> P.get_readable_time("nanoseconds").split()[-1] == "nanoseconds"
+			>>> (P.get_readable_time("nanoseconds").split()[-1] ==
+			... "nanoseconds")
 			True
-			>>> P.get_readable_time("parsecs").split()[-1] == "parsecs"
+			>>> (P.get_readable_time("parsecs").split()[-1] ==
+			... "parsecs")
 			Traceback (most recent call last):
 			 ...
 			ValueError: Invalid units type requested (parsecs).
@@ -328,8 +344,8 @@ class Performance_Monitor:
 		"""
 		if precision != None:
 			t = round(self.get_time(units), precision)
-			return ("{0:.{prec}f}".format(t,
-									prec=precision) + " " + units)
+			return ("{0:.{prec}f}".format(t, prec=precision) + " " +
+			        units)
 		else:
 			return str(self.get_time(units)) + " " + units
 
