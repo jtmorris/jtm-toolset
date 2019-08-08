@@ -154,7 +154,7 @@ class Performance_Monitor:
 
 
 	def stop_and_spit(self, units: str = "milliseconds",
-				   calling_func: str = None, prefix: str = "[PERF] ",
+				   context: str = None, prefix: str = "[PERF] ",
 				   postfix: str = ""):
 		"""Stores current time as stop time and prints elapsed time.
 
@@ -169,10 +169,11 @@ class Performance_Monitor:
 			units (str):	The units of time of return value. Will be
 						passed directly to get_time(), and must
 						conform to its units rules.
-			calling_func (str):	A string to follow the prefix.
-							Intended to hold the function name.
-							Default is None. If None, calling
-							function will be auto determined.
+			context (str):	A string to follow the prefix.
+						Intended to hold contextual information
+						explaining what is being measured.
+						Default is None. If None, calling
+						function will be auto determined.
 			prefix (str):	A string to prepend to the output. Default
 						is "[PERF] ".
 			postfix (str):	A string to append to the output. Default
@@ -192,19 +193,19 @@ class Performance_Monitor:
 			[PERF] [sastest()] ... nanoseconds
 		"""
 		# If no function string was provided, get one.
-		if calling_func == None:
+		if context == None:
 			try:
 				import inspect
-				calling_func = str(inspect.stack()[1].function)
-				if calling_func != "<module>":
-					calling_func = calling_func + "()"
-				calling_func = "[" + calling_func + "] "
+				context = str(inspect.stack()[1].function)
+				if context != "<module>":
+					context = context + "()"
+				context = "[" + context + "] "
 			except:
-				calling_func = ""
+				context = ""
 
 		self.quiet_stop()
 
-		print(prefix + calling_func + self.get_readable_time(units, 1) +
+		print(prefix + context + self.get_readable_time(units, 1) +
 		      postfix)
 
 
