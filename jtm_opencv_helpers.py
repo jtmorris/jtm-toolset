@@ -43,32 +43,35 @@ def create_blank_image(width: int, height: int, color = (255,255,255)):
 class Image_Concatenate:
 	@classmethod
 	def horizontal_and_cut_larger(cls, images_list: list):
-		"""
+		"""Concatenate horizontally, cut height overhangs.
+
 		Combines all images horizontally, with a max height of the
 		smallest image height. Excess of larger images will be cut
 		off, starting from the bottom up.
 		"""
 
 		h_min = min(cls.matrix_height(im) for im in images_list)
-		chopped_list = [im[:, :h_min] for im in images_list]
+		chopped_list = [im[:h_min, :] for im in images_list]
 		return cls.horizontal_and_resize_down(chopped_list)
 
 	@classmethod
 	def vertical_and_cut_larger(cls, images_list: list):
-		"""
+		"""Concatenate vertically, cut width overhangs.
+
 		Combines all images vertically, with a max width of the
 		smallest image height. Excess of larger images will be cut
 		off, starting from the right side, moving left.
 		"""
 
 		w_min = min(cls.matrix_width(im) for im in images_list)
-		chopped_list = [im[:w_min, :] for im in images_list]
+		chopped_list = [im[:, :w_min] for im in images_list]
 		return cls.vertical_and_resize_down(chopped_list)
 
 	@classmethod
 	def horizontal_and_fill_empty(cls, images_list: list,
 		empty_color: (255, 255, 255)):
-		"""
+		"""Concatenate horizontally, fill underneath gaps.
+
 		Combines all images horizontally, filling voids underneath
 		smaller height images with a solid color.
 
@@ -86,12 +89,13 @@ class Image_Concatenate:
 			            empty_color)
 			blank[0:im.shape[0], 0:im.shape[1]] = im
 			padded.append(blank)
-		return padded
+		return cv2.hconcat(padded)
 
 	@classmethod
 	def vertical_and_fill_empty(cls, images_list: list,
 		empty_color: (255, 255, 255)):
-		"""
+		"""Concatenate vertical, fill right gaps.
+
 		Combines all images vertically, filling voids to the right of
 		smaller width images with a solid color.
 
@@ -109,11 +113,12 @@ class Image_Concatenate:
 			            empty_color)
 			blank[0:im.shape[0], 0:im.shape[1]] = im
 			padded.append(blank)
-		return padded
+		return cv2.vconcat(padded)
 
 	@classmethod
 	def horizontal_and_resize_down(cls, images_list: list):
-		"""
+		"""Concatenate horizontal, resize larger photos down.
+
 		Combines all images horizontally, resizing photos to match the
 		smallest height image's height. Aspect ratio maintained.
 		"""
@@ -124,7 +129,8 @@ class Image_Concatenate:
 
 	@classmethod
 	def vertical_and_resize_down(cls, images_list: list):
-		"""
+		"""Concatenate vertical, resize larger photos down.
+
 		Combines all images vertically, resizing photos to match the
 		smallest width image's width. Aspect ratio maintained.
 		"""
@@ -135,7 +141,8 @@ class Image_Concatenate:
 
 	@classmethod
 	def horizontal_and_resize_up(cls, images_list: list):
-		"""
+		"""Concatenate horizontal, resize smaller photos up.
+
 		Combines all images horizontally, resizing photos to match the
 		largest height image's height. Aspect ratio maintained.
 		"""
@@ -146,7 +153,8 @@ class Image_Concatenate:
 
 	@classmethod
 	def vertical_and_resize_up(cls, images_list: list):
-		"""
+		"""Concatenate vertical, resize smaller photos up.
+
 		Combines all images vertically, resizing photos to match the
 		largest width image's width. Aspect ratio maintained.
 		"""
