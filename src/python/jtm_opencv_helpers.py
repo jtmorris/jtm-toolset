@@ -1,3 +1,13 @@
+"""OpenCV Python Tools & Helpers
+
+This script contains a collection of tools and helper functions/classes
+for using OpenCV. It is intended for use with Python 3 and OpenCV 4. It
+should be fairly version agnostic with OpenCV and Python 3.
+
+This script requires OpenCV installed and importable with `cv2`. It
+requires numpy and imutils modules as well.
+"""
+
 import numpy as np
 import cv2
 import imutils

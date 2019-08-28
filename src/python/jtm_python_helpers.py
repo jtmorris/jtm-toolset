@@ -1,3 +1,10 @@
+"""Python Tools & Helpers
+
+This script contains a collection of tools and helper functions/classes
+for using Python. It is intended for use with Python 3, but should be
+fairly sub-version agnostic.
+"""
+
 import time
 
 def init_list_with_values(list_length: int, init_value):
