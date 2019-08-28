@@ -6,8 +6,8 @@ import sys
 sys.path.append('..')
 #from pprint import pprint as var_dump
 
-import jtm_opencv_helpers as JOH
-from jtm_opencv_helpers import Image_Concatenate as Im_Concat
+import src.python.jtm_opencv_helpers as JOH
+from src.python.jtm_opencv_helpers import Image_Concatenate as Im_Concat
 
 
 class LP_Tests(unittest.TestCase):
