@@ -197,7 +197,7 @@ class Image_Concatenate:
 		"""
 
 		try:
-			return matrix.shape[0]
+			return matrix.shape[1]
 		except IndexError:
 			return 0
 
@@ -223,7 +223,7 @@ class Image_Concatenate:
 			1
 		"""
 		try:
-			return matrix.shape[1]
+			return matrix.shape[0]
 		except IndexError:
 			return 1
 
