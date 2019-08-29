@@ -44,6 +44,17 @@ class LP_Tests(unittest.TestCase):
 		self.assertEqual(h, 200, "Height different than specified.")
 		self.assertEqual(random_value, 200, "Color different than specified.")
 
+	def test_if_gray_convert_bgr_gray(self):
+		bgr = JOH.if_gray_convert_bgr(JOH.create_blank_image(100, 200, 255))
+		self.assertEqual(len(bgr.shape), 3, "BGR image should have 3 dimensions.")
+
+	def test_if_gray_convert_bgr_bgr(self):
+		bgr_b = JOH.create_blank_image(100, 200, (255,128,0))
+		bgr_a = JOH.if_gray_convert_bgr(bgr_b)
+		self.assertEqual(len(bgr_a), 3, "BGR image should have 3 dimensions.")
+		npt.assert_array_equal(bgr_b[25,25], bgr_a[25,25],
+			"The BGR image was altered and shouldn't have been.")
+
 	def test_concat_horizontal_and_cut_larger(self):
 		im1 = JOH.create_blank_image(100, 200, 0)
 		im2 = JOH.create_blank_image(200, 300, 128)

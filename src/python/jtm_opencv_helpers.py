@@ -50,6 +50,25 @@ def create_blank_image(width: int, height: int, color = (255,255,255)):
 	image[:] = color
 	return image
 
+def if_gray_convert_bgr(im):
+	"""If passed image is grayscale, convert to BGR.
+
+	If the passed numpy.ndarray is two-dimensional, have OpenCV convert
+	from grayscale to BGR. If three-dimensional, assume it's already in
+	BGR format. Returns the BGR result.
+
+	Args:
+		im (ndarray):	The OpenCV image in grayscale or BGR format.
+
+	Returns:
+		(ndarray):	The image in BGR format.
+	"""
+
+	if len(im.shape) == 2:
+		return cv2.cvtColor(im, cv2.COLOR_GRAY2BGR)
+
+	return im
+
 class Image_Concatenate:
 	@classmethod
 	def horizontal_and_cut_larger(cls, images_list: list):
