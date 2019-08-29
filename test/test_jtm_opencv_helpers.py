@@ -45,9 +45,9 @@ class LP_Tests(unittest.TestCase):
 		self.assertEqual(random_value, 200, "Color different than specified.")
 
 	def test_concat_horizontal_and_cut_larger(self):
-		im1 = JOH.create_blank_image(100, 100, 0)
-		im2 = JOH.create_blank_image(200, 200, 128)
-		im3 = JOH.create_blank_image(300, 300, 255)
+		im1 = JOH.create_blank_image(100, 200, 0)
+		im2 = JOH.create_blank_image(200, 300, 128)
+		im3 = JOH.create_blank_image(300, 400, 255)
 
 		cim = Im_Concat.horizontal_and_cut_larger((im1, im2, im3))
 
@@ -67,9 +67,9 @@ class LP_Tests(unittest.TestCase):
 		self.assertEqual(im3_val, 255, "This should be region of image 3.")
 
 	def test_concat_vertical_and_cut_larger(self):
-		im1 = JOH.create_blank_image(100, 100, 0)
-		im2 = JOH.create_blank_image(200, 200, 128)
-		im3 = JOH.create_blank_image(300, 300, 255)
+		im1 = JOH.create_blank_image(200, 100, 0)
+		im2 = JOH.create_blank_image(300, 200, 128)
+		im3 = JOH.create_blank_image(400, 300, 255)
 
 		cim = Im_Concat.vertical_and_cut_larger((im1, im2, im3))
 
@@ -89,9 +89,9 @@ class LP_Tests(unittest.TestCase):
 		self.assertEqual(im3_val, 255, "This should be region of image 3.")
 
 	def test_concat_horizontal_and_fill_empty(self):
-		im1 = JOH.create_blank_image(100, 100, (0,0,0))
-		im2 = JOH.create_blank_image(200, 200, (128,128,128))
-		im3 = JOH.create_blank_image(300, 300, (255,255,255))
+		im1 = JOH.create_blank_image(100, 200, (0,0,0))
+		im2 = JOH.create_blank_image(200, 300, (128,128,128))
+		im3 = JOH.create_blank_image(300, 400, (255,255,255))
 
 		cim = Im_Concat.horizontal_and_fill_empty((im1, im2, im3),
 			(255,128,0))
@@ -118,9 +118,9 @@ class LP_Tests(unittest.TestCase):
 			"This should be padded region of image.")
 
 	def test_concat_vertical_and_fill_empty(self):
-		im1 = JOH.create_blank_image(100, 100, (0,0,0))
-		im2 = JOH.create_blank_image(200, 200, (128,128,128))
-		im3 = JOH.create_blank_image(300, 300, (255,255,255))
+		im1 = JOH.create_blank_image(200, 100, (0,0,0))
+		im2 = JOH.create_blank_image(300, 200, (128,128,128))
+		im3 = JOH.create_blank_image(400, 300, (255,255,255))
 
 		cim = Im_Concat.vertical_and_fill_empty((im1, im2, im3),
 			(255,128,0))
