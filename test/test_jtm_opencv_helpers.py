@@ -60,7 +60,7 @@ class LP_Tests(unittest.TestCase):
 		im3_val = cim[50,500]
 
 
-		self.assertEqual(h, 100, "Height should be equal to smallest height.")
+		self.assertEqual(h, 200, "Height should be equal to smallest height.")
 		self.assertEqual(w, 600, "Width should be sum of widths.")
 		self.assertEqual(im1_val, 0, "This should be region of image 1.")
 		self.assertEqual(im2_val, 128, "This should be region of image 2.")
@@ -83,7 +83,7 @@ class LP_Tests(unittest.TestCase):
 
 
 		self.assertEqual(h, 600, "Height should be sum of heights.")
-		self.assertEqual(w, 100, "Width should be equal to smallest width.")
+		self.assertEqual(w, 200, "Width should be equal to smallest width.")
 		self.assertEqual(im1_val, 0, "This should be region of image 1.")
 		self.assertEqual(im2_val, 128, "This should be region of image 2.")
 		self.assertEqual(im3_val, 255, "This should be region of image 3.")
@@ -106,7 +106,7 @@ class LP_Tests(unittest.TestCase):
 		pad_val = cim[200,50]
 
 
-		self.assertEqual(h, 300, "Height should be equal to largest.")
+		self.assertEqual(h, 400, "Height should be equal to largest.")
 		self.assertEqual(w, 600, "Width should be equal to sum of widths.")
 		npt.assert_array_equal(im1_val, (0,0,0),
 			"This should be region of image 1.")
@@ -136,7 +136,7 @@ class LP_Tests(unittest.TestCase):
 
 
 		self.assertEqual(h, 600, "Height should be equal to sum of heights.")
-		self.assertEqual(w, 300, "Width should be equal to largest.")
+		self.assertEqual(w, 400, "Width should be equal to largest.")
 		npt.assert_array_equal(im1_val, (0,0,0),
 			"This should be region of image 1.")
 		npt.assert_array_equal(im2_val, (128,128,128),
